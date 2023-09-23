@@ -1,0 +1,322 @@
+% Name           : beamerthemempimg.sty
+% Author         : Martin Ballaschk (ballaschk@molgen.mpg.de)
+%                  based on a theme by Benjamin Weiss (benjamin.weiss@kreatiefton.de)
+% Version        : 0.1.1
+% Created on     : 05.05.2013
+% Last Edited on : 08.03.2021
+% Copyright      : Copyright (c) 2013-2014 by Benjamin Weiss. All rights reserved.
+% License        : This file may be distributed and/or modified under the
+%                  GNU Public License.
+% Description    : Beamer theme that complies with the corporate design of
+%                  the Max Planck Institute for Molecular Genetics 
+
+\ProvidesPackage{beamerthemempimg}[2021/07/03]
+
+\usepackage{eso-pic}
+
+\newif\if@doSans
+\@doSansfalse
+\DeclareOption{noserifmath}{\@doSanstrue}
+\newif\if@doNoFlama
+\@doNoFlamafalse
+\DeclareOption{noflama}{\@doNoFlamatrue}
+\newif\if@doSectionPage
+\@doSectionPagefalse
+\DeclareOption{nosectionpages}{\@doSectionPagetrue}
+\ProcessOptions
+
+\mode<presentation>
+
+%---------------------------------------------------------------------
+% TOC
+%---------------------------------------------------------------------
+\useoutertheme[subsection=false,shadow]{miniframes}
+\setbeamertemplate{section in toc}[sections numbered]
+\setbeamertemplate{subsection in toc}[subsections numbered]
+
+%---------------------------------------------------------------------
+% custom commands
+%---------------------------------------------------------------------
+% \newcommand{\rightTextArrow}{→}
+
+%---------------------------------------------------------------------
+% Itemize
+%---------------------------------------------------------------------
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{itemize subsubitem}[triangle]
+
+\setlength{\parskip}{0.5em}
+
+%---------------------------------------------------------------------
+% Colors
+%---------------------------------------------------------------------
+
+% Primary Colors
+
+\definecolor{mpgGreen}{rgb}{0,0.4235294118,0.4} %(R=0 G=108 B=102)
+\definecolor{mpgGreenDark}{rgb}{0,0.3333333333,0.3333333333} %(R=0 G=85 B=85)
+
+% Secondary Colors
+\definecolor{mpgGreyDark}{rgb}{0.4666666667,0.4666666667,0.4666666667} %(R=119 G=119 B=119)
+\definecolor{mpgGrey}{rgb}{0.6549019608,0.6549019608,0.6588235294} %(R=167 G= 167 B=168)
+\definecolor{mpgGreyLight}{rgb}{0.9333333333,0.9333333333,0.9333333333} %(R=238 G=238 B=238)
+
+% Accent Colors
+\definecolor{mpgGreenLight}{rgb}{0.7764705882,0.8274509804,0.1450980392} %(R=198 G=211 B=37)
+\definecolor{mpgBlueLight}{rgb}{0,0.6941176471,0.9176470588} %(R=0 G=177 B=234)
+\definecolor{mpgBlueDark}{rgb}{0.1607843137,0.2823529412,0.3647058824} %(R=41 G=72 B=93)
+\definecolor{mpgOrange}{rgb}{0.937254902,0.4862745098,0} %(R=239 G=124 B=0)
+
+% General
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{structure}{fg=mpgGreen}
+\setbeamercolor{alerted text}{fg=mpgOrange}
+\setbeamercolor{example text}{fg=white}
+\setbeamercolor{copyright text}{fg=mpgGreyDark}
+
+\setbeamercolor{palette primary}{fg=mpgGreen}
+\setbeamercolor{palette secondary}{fg=mpgGreyDark,bg=mpgGreyLight}
+\setbeamercolor{palette tertiary}{fg=white,bg=mpgGreen}
+\setbeamercolor{palette quaternary}{fg=mpgGreen}
+
+\setbeamercolor{palette titleprimary}{fg=mpgOrange}
+\setbeamercolor{palette titlesecondary}{fg=white}
+
+% Titlepage
+\setbeamercolor{title}{parent=palette titleprimary}
+\setbeamercolor{subtitle}{parent=palette titleprimary}
+\setbeamercolor{author}{parent=palette titlesecondary}
+\setbeamercolor{date}{parent=palette titlesecondary}
+\setbeamercolor{institute}{parent=palette titlesecondary}
+% Content
+\setbeamercolor{frametitle}{parent=palette quaternary}
+% Blocks
+\setbeamercolor{block title}{parent=palette quaternary}
+\setbeamercolor{block body}{parent=palette secondary}
+\setbeamercolor{block title example}{fg=white, bg=mpgGreyDark}
+\setbeamercolor{block body example}{fg=black, bg=mpgGrey}
+\setbeamercolor{block title alerted}{fg=white, bg=mpgGreenDark}
+\setbeamercolor{block body alerted}{fg=white, bg=mpgGreen}
+% Notes
+\setbeamercolor{note page}{fg=mpgGreyDark,bg=mpgGreyLight}
+\setbeamercolor{note title}{fg=white, bg=mpgGreyDark}
+\setbeamercolor{note date}{parent=note title}
+% Page Number
+\setbeamercolor{page number in head/foot}{fg=mpgGreyDark}
+
+%---------------------------------------------------------------------
+% Fonts
+%---------------------------------------------------------------------
+
+% General
+
+% Declare fontfamilys
+	% Sans serif math option
+	\if@doSans%
+		% sans serif math %
+		\usepackage[no-math]{fontspec}%	
+		\setmainfont{Arial}%
+	\else%
+		% serif math %
+		\usepackage{fontspec}%	
+		\usefonttheme[onlymath]{serif}%
+	\fi%
+	\newfontfamily\Light{Arial}%
+	\newfontfamily\Book{Arial-Bold}%
+	\newfontfamily\Medium{Arial-Bold}%
+	\setsansfont{Arial}%
+
+\renewcommand\UrlFont{\Medium}
+% Titlepage
+\setbeamerfont{title}{family=\Book,size=\fontsize{20}{20}}
+\setbeamerfont{subtitle}{family=\Book,size=\fontsize{12}{14}}
+\setbeamerfont{date}{size=\fontsize{12}{15}}
+\setbeamerfont{author}{family=\Book,size=\fontsize{12}{15}}
+\setbeamerfont{institute}{family=\Book,size=\fontsize{12}{15}}
+% Section
+\setbeamerfont{section title}{size=\LARGE}
+% Content
+\setbeamerfont{frametitle}{family=\Book,size=\LARGE}
+\setbeamerfont{copyright text}{family=\Light,size=\tiny}
+\setbeamerfont{block title}{family=\Book,size=\large}
+\setbeamerfont{block title alerted}{family=\Book,size=\large}
+\setbeamerfont{alerted text}{family=\Medium}
+% Captions
+\setbeamerfont{caption name}{family=\Book}
+
+%---------------------------------------------------------------------
+% Titlepage
+%---------------------------------------------------------------------
+
+% Titlepage structure
+\def\maketitle{\ifbeamer@inframe\titlepage\else\frame[plain]{\titlepage}\fi}
+\def\titlepage{\usebeamertemplate{title page}}
+\setbeamertemplate{title page}
+{
+	% Add background to title page
+
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[at=(current page.center),fill=mpgGreen, minimum width=\paperwidth, minimum height=\paperheight] {};
+		\node[at=(current page.center)]{\includegraphics[height=\paperheight]{theme-logos/background-logo.pdf}};
+		\node[at=(current page.north east),anchor=north east]{\includegraphics[height=12mm]{theme-logos/logo-white.eps}};
+	\end{tikzpicture}
+	\begin{minipage}[b][\paperheight]{\textwidth}
+	\vspace*{40mm}
+	
+	\ifx\insertsubtitle\@empty%
+	\else%
+		{\usebeamerfont{title}\usebeamercolor[fg]{title}{\inserttitle}\par}%
+	\fi%
+	\ifx\insertsubtitle\@empty%
+	\else%
+		{\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+		\vspace*{5mm}
+	\fi%
+	
+	\vfill
+	
+	\begin{tikzpicture}
+		\fill[fill=mpgOrange] (0,0) rectangle (1,0.1);
+	\end{tikzpicture}
+	
+	\vspace*{2mm}
+	 
+	\ifx\insertauthor\@empty%
+	\else%
+		{\usebeamerfont{author}\usebeamercolor[fg]{author}\insertauthor\par}%
+	\fi%
+	\ifx\insertinstitut\@empty%
+	\else%
+		% \vspace*{3mm}
+		{\usebeamerfont{institute}\textcolor{white}{\insertinstitute}\par}%
+	\fi% 
+	\ifx\insertdate\@empty%
+	\else%
+		{\usebeamerfont{date}\usebeamercolor[fg]{date}\insertdate\par}%
+	\fi%
+	
+	\vspace*{10mm}
+	\end{minipage}
+}
+
+%---------------------------------------------------------------------
+% Sectionpages
+%---------------------------------------------------------------------
+
+% Make Sectionhead uppercase
+\newcommand{\insertsectionHEAD}{%
+	\expandafter\insertsectionHEADaux\insertsectionhead}
+	\newcommand{\insertsectionHEADaux}[3]{\MakeUppercase{#3}
+}
+
+\if@doSectionPage\@empty
+\else
+% Insert frame with section title at every section start
+\AtBeginSection[]
+{
+\begingroup
+\setbeamercolor{background canvas}{bg=mpgGreen}
+\begin{frame}[plain]
+\begin{tikzpicture}[remember picture,overlay]
+	\node[at=(current page.center)]{\includegraphics[height=\paperheight]{theme-logos/background-logo.pdf}};
+\end{tikzpicture}
+\centering
+\vfill\usebeamerfont{section title}\textcolor{white}{\insertsectionHEAD}\vfill
+\end{frame}
+\endgroup
+}
+\fi
+
+%---------------------------------------------------------------------
+% Frametitle
+%---------------------------------------------------------------------
+\setbeamertemplate{frametitle}
+{
+\begin{beamercolorbox}[wd=\paperwidth,leftskip=0.5cm,rightskip=0.25cm,ht=3ex,dp=1.5ex]{frametitle}
+	 \usebeamerfont{frametitle} \strut \insertframetitle \hfill \raisebox{-0.5ex}[0pt][-\ht\strutbox ]{ \includegraphics[height=3ex]{theme-logos/logo-small.pdf}} 
+\end{beamercolorbox}
+
+% \vspace{-0.165ex}
+
+}
+
+%---------------------------------------------------------------------
+% Footline
+%---------------------------------------------------------------------
+\usenavigationsymbolstemplate{}
+\setbeamertemplate{footline}
+{%
+\begin{beamercolorbox}[wd=\textwidth,ht=3ex,dp=1.5ex,leftskip=0.3cm,rightskip=0.3cm]{structure}%
+\hfill\usebeamerfont{page number in head/foot}%
+\insertframenumber%
+\end{beamercolorbox}%
+}
+
+%---------------------------------------------------------------------
+% Captions
+%---------------------------------------------------------------------
+\setbeamertemplate{caption label separator}{: }
+
+%---------------------------------------------------------------------
+% Blocks
+%---------------------------------------------------------------------
+\setbeamertemplate{block begin}
+{
+  \setbeamercolor{item}{parent=block body}
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex]{block title}
+    \usebeamerfont*{block title}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  {\nointerlineskip\vskip-0.5pt}%
+  \usebeamerfont{block body}%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex,vmode]{block body}%
+}
+\setbeamertemplate{block end}  
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+\setbeamertemplate{block alerted begin}
+{
+  \setbeamercolor{item}{parent=block body alerted}
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex]{block title alerted}
+    \usebeamerfont*{block title alerted}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  {\nointerlineskip\vskip-0.5pt}%
+  \usebeamerfont{block body alerted}%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex,vmode]{block body alerted}%
+}
+\setbeamertemplate{block alerted end}
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+\setbeamertemplate{block example begin}
+{
+  \par\vskip\medskipamount%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex]{block title example}
+    \usebeamerfont*{block title example}\insertblocktitle%
+  \end{beamercolorbox}%
+  {\parskip0pt\par}%
+  {\nointerlineskip\vskip-0.5pt}%
+  \usebeamerfont{block body example}%
+  \begin{beamercolorbox}[sep=.5ex,dp=0.6ex,leftskip=0.5ex,rightskip=0.5ex,vmode]{block body example}%
+}
+\setbeamertemplate{block example end}
+{\end{beamercolorbox}\vskip\smallskipamount}
+
+%---------------------------------------------------------------------
+% Images
+%---------------------------------------------------------------------
+
+\newbox\mytempbox
+\newdimen\mytempdimen
+
+\newcommand\includegraphicscopyright[3][]{%
+  \leavevmode\vbox{\vskip3pt\raggedright\setbox\mytempbox=\hbox{\includegraphics[#1]{#2}}%
+    \mytempdimen=\wd\mytempbox\box\mytempbox\par\vskip1pt%
+    \usebeamerfont{copyright text}{\usebeamercolor[fg]{copyright text}{\vbox{\hsize=\mytempdimen#3}}}\vskip3pt%
+}}
+
+\mode
+<all>

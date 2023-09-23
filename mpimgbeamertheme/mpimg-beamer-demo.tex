@@ -1,0 +1,463 @@
+%!TEX program = xelatex
+
+% Name           : mpimg-beamer-demo.sty
+% Author         : Martin Ballaschk (ballaschk@molgen.mpg.de)
+%                  based on a theme by Benjamin Weiss (benjamin.weiss@kreatiefton.de)
+% Version        : 0.1.1
+% Created on     : 05.05.2013
+% Last Edited on : 08.03.2021
+% Copyright      : Copyright (c) 2013-2014 by Benjamin Weiss. All rights reserved. 
+% License        : This file may be distributed and/or modified under the
+%                  GNU Public License.
+% Description    : MPIMG beamer theme demonstration. Also includes a short 
+%                  Tutorial regarding the beamer class.
+
+\documentclass[compress%
+,aspectratio=169% uncomment for 3:4 slides
+]{beamer}
+%--------------------------------------------------------------------------
+% Common packages
+%--------------------------------------------------------------------------
+\usepackage[german]{babel}
+
+\usepackage{graphicx}
+\usepackage{multicol}
+% Erweiterte Tabellenfunktionen
+\usepackage{tabularx,ragged2e}
+\usepackage{booktabs}
+% Listingserweiterung
+\usepackage{listings}
+\lstset{ %
+language=[LaTeX]TeX,
+basicstyle=\normalsize\ttfamily,
+keywordstyle=,
+numbers=left,
+numberstyle=\tiny\ttfamily,
+stepnumber=1,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+breaklines=true,
+frame=tb,
+framerule=0.5pt,
+tabsize=4,
+framexleftmargin=0.5em,
+framexrightmargin=0.5em,
+xleftmargin=0.5em,
+xrightmargin=0.5em
+}
+
+%--------------------------------------------------------------------------
+% Load theme
+%--------------------------------------------------------------------------
+\usetheme{mpimg}
+
+% \usepackage{dtklogos} % must be loaded after theme
+\usepackage{tikz}
+\usetikzlibrary{mindmap,backgrounds}
+
+%--------------------------------------------------------------------------
+% General presentation settings
+%--------------------------------------------------------------------------
+\title{MPIMG Beamer Theme}
+\subtitle{Demonstration und kurze Einführung in Beamer}
+\date{Letztes Update: \today}
+\author{Mus Musculus}
+\institute{Max-Planck-Institut für molekulare Genetik}
+
+%--------------------------------------------------------------------------
+% Notes settings
+%--------------------------------------------------------------------------
+\setbeameroption{show notes}
+
+\begin{document}
+%--------------------------------------------------------------------------
+% Titlepage
+%--------------------------------------------------------------------------
+
+\maketitle
+
+%\begin{frame}[plain]
+%	\titlepage
+%\end{frame}
+
+%--------------------------------------------------------------------------
+% Table of contents
+%--------------------------------------------------------------------------
+\section*{Gliederung}
+\begin{frame}{Gliederung}
+	% hideallsubsections ist empfehlenswert für längere Präsentationen
+	\tableofcontents[hideallsubsections]
+\end{frame}
+
+%--------------------------------------------------------------------------
+% Content
+%--------------------------------------------------------------------------
+\section{Einleitung}
+
+\begin{frame}{Was ist Beamer?}
+	Die Beamer Klassen für \LaTeX\ dienen zur Erstellung von Präsentationen, welche mit einem Projektor vorgeführt werden sollen. Das Textsatzsystem erzeugt dazu PDF Dateien, die von einer großen Anzahl an Programmen gezeigt werden können.
+\end{frame}
+
+\begin{frame}{Systemvoraussetzungen}
+	Um erfolgreich Präsentationen mit diesem Theme erstellen zu können, sind folgende Voraussetzungen vom System zu erfüllen:
+	\begin{itemize}
+		\item Zum Setzen der Folien muss XeTeX verwendet werden.
+		\item Neben einigen Standardpaketen müssen die Pakete \texttt{beamer}, \texttt{pgf} und \texttt{xcolor} installiert sein.
+	\end{itemize}
+\end{frame}
+
+\section{Tutorial}
+\begin{frame}[containsverbatim]{Grundaufbau des Dokuments}
+Der Grundaufbau ist einfach:
+\begin{lstlisting}
+\documentclass[compress]{beamer}
+% Theme laden
+\usetheme{mpimg}
+% Allgemeine Präsentationseinstellungen 
+\title{Titel der Präsentation}
+\subtitle{Untertitel der Präsentation}
+\author{Ihr Name}
+\institute{Max-Planck-Institut für molekulare Genetik}
+\begin{document}
+% Folien
+\end{document}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}{Themeoptionen}
+Um die Darstellung der Präsentation anzupassen können die folgenden Optionen gewählt werden.
+\begin{table}[]
+	\begin{tabularx}{\linewidth}{l>{\raggedright}X}
+		\toprule
+		\textbf{Option}			& \textbf{Auswirkung} \tabularnewline
+		\midrule
+		\texttt{noserifmath}		& Formeln werden ebenfalls serifenlos gesetzt. \tabularnewline
+		\texttt{nosectionpages} & Die Sektionseinleitungsseiten werden ausgeblendet.\tabularnewline
+		\bottomrule
+	\end{tabularx}
+	\label{tab:options}
+\end{table}
+\end{frame}
+
+\begin{frame}{Primär- und Sekundärfarben}									
+Alle Farben des Max-Planck-Corporate Designs von 2020 sind im Template hinterlegt.
+
+
+\begin{multicols}{2}
+
+\setbeamercolor{mpgGreen}{fg=mpgGreen,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{mpgGreenDemo}
+	\texttt{mpgGreen}
+\end{beamercolorbox}
+\setbeamercolor{mpgGreenDark}{fg=mpgGreenDark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{mpgGreenDarkDemo}
+	\texttt{mpgGreenDark}
+\end{beamercolorbox}
+\setbeamercolor{mpgGreyDarkDemo}{fg=mpgGreyDark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{mpgGreyDarkDemo}
+	\texttt{mpgGreyDark}
+\end{beamercolorbox}
+\setbeamercolor{mpgGreyDemo}{fg=mpgGrey,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{mpgGreyDemo}
+	\texttt{mpgGrey}
+\end{beamercolorbox}
+\setbeamercolor{mpgGreyLightDemo}{fg=mpgGreyLight,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{mpgGreyLightDemo}
+	\texttt{mpgGreyLight}
+\end{beamercolorbox}
+
+\setbeamercolor{mpgGreenDemoBg}{fg=white,bg=mpgGreen}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{mpgGreenDemoBg}
+	\texttt{mpgGreen}
+\end{beamercolorbox}
+\setbeamercolor{mpgGreenDarkDemoBg}{fg=white,bg=mpgGreenDark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{mpgGreenDarkDemoBg}
+	\texttt{mpgGreenDark}
+\end{beamercolorbox}
+\setbeamercolor{mpgGreyDarkDemo}{fg=white,bg=mpgGreyDark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{mpgGreyDarkDemo}
+	\texttt{mpgGreyDark}
+\end{beamercolorbox}
+\setbeamercolor{mpgGreyDemo}{fg=white,bg=mpgGrey}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{mpgGreyDemo}
+	\texttt{mpgGrey}
+\end{beamercolorbox}
+\setbeamercolor{mpgGreyLightDemo}{fg=white,bg=mpgGreyLight}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{mpgGreyLightDemo}
+	\texttt{mpgGreyLight}
+\end{beamercolorbox}
+\end{multicols}
+
+\end{frame}
+
+\begin{frame}{Akzentfarben}
+\begin{multicols}{2}
+
+\setbeamercolor{mpgOrangeDemo}{fg=mpgOrange,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{mpgOrangeDemo}
+	\texttt{mpgOrange}
+\end{beamercolorbox}
+\setbeamercolor{mpgGreenLightDemo}{fg=mpgGreenLight,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{mpgGreenLightDemo}
+	\texttt{mpgGreenLight}
+\end{beamercolorbox}
+\setbeamercolor{mpgBlueLightDemo}{fg=mpgBlueLight,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{mpgBlueLightDemo}
+	\texttt{mpgBlueLight}
+\end{beamercolorbox}
+\setbeamercolor{mpgBlueDarkDemo}{fg=mpgBlueDark,bg=white}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,dp=0.7ex]{mpgBlueDarkDemo}
+	\texttt{mpgBlueDark}
+\end{beamercolorbox}
+
+\setbeamercolor{mpgOrangeDemoBg}{fg=white,bg=mpgOrange}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{mpgOrangeDemoBg}
+	\texttt{mpgOrange}
+\end{beamercolorbox}
+\setbeamercolor{mpgGreenLightDemoBg}{fg=white,bg=mpgGreenLight}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{mpgGreenLightDemoBg}
+	\texttt{mpgGreenLight}
+\end{beamercolorbox}
+\setbeamercolor{mpgBlueLightDemoBg}{fg=white,bg=mpgBlueLight}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{mpgBlueLightDemoBg}
+	\texttt{mpgBlueLight}
+\end{beamercolorbox}
+\setbeamercolor{mpgBlueDarkDemoBg}{fg=white,bg=mpgBlueDark}
+\begin{beamercolorbox}[wd=\linewidth,ht=2ex,leftskip=.5ex,dp=0.7ex]{mpgBlueDarkDemoBg}
+	\texttt{mpgBlueDark}
+\end{beamercolorbox}
+%
+\end{multicols}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Folienstruktur}
+Strukturiert wird in Beamer wie in \LaTeX\ üblich mittels \lstinline!section!, \lstinline!subsection!, usw. Für Folien ist die \lstinline!frame! Umgebung definiert.
+
+Der Folientitel kann direkt an die \lstinline!frame! Umgebung übergeben werden oder mittels \lstinline!\frametitle{Folientitel}! innerhalb der Umgebung gesetzt werden.
+\begin{lstlisting}
+\section{Meine Sektion}
+\subsection{Meine Subsektion}
+\begin{frame}
+\frametitle{Folientitel}
+% Folieninhalt
+\end{frame}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Titelseite und Inhaltsverzeichnis}
+Die Titelseite erzeugt man mit 
+\begin{lstlisting}
+\maketitle
+\end{lstlisting}
+Und das Inhaltsverzeichnis mit
+\begin{lstlisting}
+\begin{frame}{Gliederung}
+	\tableofcontents[hideallsubsections]
+\end{frame}
+\end{lstlisting}
+Die Option \lstinline!hideallsubsections! bietet sich bei längeren Präsentationen an, um das Inhaltsverzeichnis kompakt zu halten.
+\end{frame}
+
+\subsection{Aufzählungen}
+\begin{frame}[containsverbatim]{Aufzählungen}
+Aufzählungen sind mit der \lstinline!enumerate! und der \lstinline!itemize! Umgebung möglich.
+\begin{enumerate}
+	\item Punkt 1
+	\item Punkt 2
+	\begin{itemize}
+		\item Punkt 1
+		\item Punkt 2
+	\end{itemize}
+	\item Punkt 3
+\end{enumerate}
+\end{frame}
+
+\subsection{Hervorhebungen}
+\begin{frame}[containsverbatim]{Hervorhebungen}
+In der Beamer Klasse ist die Funktion \lstinline!\alert! definiert, um einzelne Wörter hervorzuheben. Beispiel:
+\begin{itemize}
+	\item \alert{hervorgehobener Text}
+\end{itemize}
+\end{frame}
+
+\subsection{Blockstrukturen}
+
+\begin{frame}[containsverbatim]{Einfacher Block mit Aufzählung}
+Zur Strukturierung sind in Beamer Blockumgebungen definiert.
+\begin{block}{Block mit einer Aufzählung}
+	\begin{itemize}
+		\item Punkt 1
+		\item Punkt 2
+	\end{itemize}
+\end{block}
+\begin{lstlisting}
+\begin{block}{Block mit einer Aufzählung}
+	\begin{itemize}
+		\item Punkt 1
+		\item Punkt 2
+	\end{itemize}
+\end{block}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Alert Block}
+\begin{alertblock}{Alert Block}
+	Ein Alert Block wird mit der ersten Primärfarbe eingefärbt.
+\end{alertblock}
+\begin{lstlisting}
+\begin{alertblock}{Alert Block}
+Ein Alert Block wird mit der ersten Primärfarbe eingefärbt.
+\end{alertblock}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Example Block}
+\begin{exampleblock}{Example Block}
+	Ein Example Block wird mit der ersten Sekundärfarbe eingefärbt.
+\end{exampleblock}
+\begin{lstlisting}
+\begin{exampleblock}{Example Block}
+Ein Example Block wird mit der ersten Sekundärfarbe eingefärbt.
+\end{exampleblock}
+\end{lstlisting}
+\end{frame}
+
+
+\section{Beispielfolien}
+\begin{frame}{Weitere Beispiele}
+Nachfolgend sind weitere Beispielfolien ohne zusätzliche Erläuterung angehängt.
+
+Schauen Sie einfach in den Quelltext, um zu sehen wie die Folien erstellt wurden.
+\end{frame}
+\subsection{Abbildungen}
+\begin{frame}{Foto mit Copyright}
+	\begin{figure}
+		\centering
+		\includegraphicscopyright[height=5cm]{photo.jpg}{Copyright by \href{http://netzlemming.deviantart.com/}{Netzlemming}, \href{http://creativecommons.org/licenses/by-nc/3.0/}{CC BY-NC 3.0 License}}
+	\end{figure}
+\end{frame}
+\begin{frame}{Plot mit Beschriftung}
+	\begin{figure}
+		\centering
+		\input{plot.tex}
+		\caption{LFE channel frequency spectrum}
+	\end{figure}
+\end{frame}
+
+\subsection{Tabellen}
+\begin{frame}{Tabelle}
+\begin{table}[]
+	\caption{Selection of window function and their properties}
+	\begin{tabular}[]{lrrr}
+		\toprule
+		\textbf{Window}			& \multicolumn{1}{c}{\textbf{First side lobe}}	
+		                    & \multicolumn{1}{c}{\textbf{3\,dB bandwidth}}
+		                    & \multicolumn{1}{c}{\textbf{Roll-off}} \\
+		\midrule
+		Rectangular				& 13.2\,dB	& 0.886\,Hz/bin	& 6\,dB/oct		\\[0.25em]
+		Triangular				& 26.4\,dB	& 1.276\,Hz/bin	& 12\,dB/oct	\\[0.25em]
+		Hann					& 31.0\,dB	& 1.442\,Hz/bin	& 18\,dB/oct	\\[0.25em]
+		Hamming					& 41.0\,dB	& 1.300\,Hz/bin	& 6\,dB/oct		\\
+		\bottomrule
+	\end{tabular}
+	\label{tab:WindowFunctions}
+\end{table}
+\end{frame}
+
+\subsection{Formeln}
+\begin{frame}{Formeln}
+\begin{block}{Fourierintegral}
+\begin{equation*}
+F(\textrm{j}\omega) = \int\limits_{-\infty}^{\infty} f(t)\cdot\textrm{e}^{-\textrm{j}\omega t} dt
+\end{equation*}
+\end{block}
+\begin{block}{Fakultät}
+\begin{equation*}
+	n! = 1\cdot 2 \cdot 3 \cdot\ldots\cdot n = \prod_{k=1}^n k
+\end{equation*}
+\end{block}
+\end{frame}
+
+\subsection{Fußnoten}
+\begin{frame}{Fußnoten}
+	Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem \footnote{Lorem ipsum dolor sit amet} ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+\end{frame}
+
+\subsection{Notizen}
+\begin{frame}{Folie mit dazugehöriger Notizfolie}
+    Für das Publikum ist diese Folie.
+
+	Für ihre Präsentation bieten sich folgende Programme an:
+	\begin{itemize}
+		\item Splitshow (Mac OS X)\\\url{https://code.google.com/p/splitshow/}
+		\item pdf-presenter (Windows)\\\url{https://code.google.com/p/pdf-presenter/}
+	\end{itemize}
+\end{frame}
+
+\note{
+    Für Ihre Notizen zum Vortrag vewenden Sie diese Folie.
+    
+	Für ihre Präsentation bieten sich folgende Programme an:
+	\begin{itemize}
+		\item Splitshow (Mac OS X)\\\url{https://code.google.com/p/splitshow/}
+		\item pdf-presenter (Windows)\\\url{https://code.google.com/p/pdf-presenter/}
+	\end{itemize} 
+}
+
+\subsection{Spalten}
+\begin{frame}{Zwei Spalten}
+	\begin{multicols}{2}
+		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+		\begin{itemize}
+        	\item ein Eintrag
+        	\item noch ein Eintrag
+		\end{itemize}
+	\end{multicols}
+\end{frame}
+
+\begin{frame}{Spaltenumbruch}
+	\begin{multicols}{2}
+		Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+		\columnbreak
+		\begin{itemize}
+        	\item ein Eintrag
+        	\item noch ein Eintrag
+		\end{itemize}
+	\end{multicols}
+\end{frame}
+
+\begin{frame}{Literaturverzeichnis}
+	\begin{thebibliography}{10}
+    
+	\beamertemplatebookbibitems
+	\bibitem{Oppenheim2009}
+	Alan~V.~Oppenheim
+	\newblock Discrete-Time Signal Processing
+	\newblock Prentice Hall Press, 2009
+
+	\beamertemplatearticlebibitems
+	\bibitem{EBU2011}
+	European~Broadcasting~Union
+	\newblock Specification of the Broadcast Wave Format (BWF)
+	\newblock 2011
+  \end{thebibliography}
+\end{frame}
+
+
+\begin{frame}{Anmerkungen}
+	Das MPIMG Theme hat anders als die PowerPoint-Vorlagen nur eine Titelseite, es fehlen auch Danksagungsseiten und solche mit großformatigen Bildern als Hintergrund. Ergänzungen und Verbesserungen sind jederzeit willkommen.
+	
+	Das Theme steht unter der „GNU Public License“. Es darf also weitergegeben und modifiziert werden, sofern die Lizenzart beibehalten wird.
+	
+	Es basiert auf dem Theme „HSRM Beamer Theme“ von Benjamin Weiss (Hochschule Rhein-Main).
+
+\end{frame}
+
+\end{document}
+
+
+
+
+
+
